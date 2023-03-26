@@ -14,6 +14,8 @@ services:
     depends_on:
       - application.dev
       - db
+    networks:
+      - setup_network
 
   db:
     image: postgres
@@ -26,6 +28,8 @@ services:
       POSTGRES_DB: brnom30desafio
       POSTGRES_USER: root 
       POSTGRES_PASSWORD: password 
+    networks:
+      - setup_network
 
   # Application Service
   application.dev:
@@ -41,6 +45,25 @@ services:
     ports:
       - "9000:9000"
     working_dir: /var/www
+    networks:
+      - setup_network
+
+  redis:
+    image: redis:alpine
+    command: redis-server --appendonly yes --requirepass password
+    volumes:
+      - ./docker/redis.conf:/usr/local/etc/redis/redis.conf
+    ports:
+      - 6379:6379
+    networks:
+      - setup_network
+     
+  #redisinsight:
+  #  image: redislabs/redisinsight:latest
+  #  ports:
+  #    - '8001:8001'    
+  #  depends_on:
+  #    - redis 
 
   pgadmin:
     image: dpage/pgadmin4
@@ -52,3 +75,9 @@ services:
     environment:
       PGADMIN_DEFAULT_EMAIL: alves.bernan@gmail.com
       PGADMIN_DEFAULT_PASSWORD: password 
+    networks:
+      - setup_network
+
+networks:
+  setup_network:
+    driver: bridge
