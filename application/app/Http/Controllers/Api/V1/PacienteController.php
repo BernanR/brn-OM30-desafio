@@ -53,6 +53,10 @@ class PacienteController extends Controller
      */
     public function destroy(Paciente $paciente)
     {
+        foreach ($paciente->PacientesEndereco as $endereco) {
+            $endereco->delete();
+        }
+
         $paciente->delete();
 
         return response()->noContent();

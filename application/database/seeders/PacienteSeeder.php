@@ -3,8 +3,8 @@
 namespace Database\Seeders;
 
 use App\Models\Paciente;
-use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
+use App\Models\PacientesEndereco;
 
 class PacienteSeeder extends Seeder
 {
@@ -13,6 +13,8 @@ class PacienteSeeder extends Seeder
      */
     public function run(): void
     {
-        Paciente::factory(10)->create();
+        Paciente::factory(10)->has(
+            PacientesEndereco::factory()->count(1)
+        )->create();
     }
 }
