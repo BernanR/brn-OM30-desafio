@@ -2,8 +2,9 @@
 
 namespace App\Models;
 
-use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Factories\HasFactory;
+use Illuminate\Database\Eloquent\Relations\HasMany;
 
 class Paciente extends Model
 {
@@ -22,4 +23,12 @@ class Paciente extends Model
         'cpf',
         'cns',
     ];
+
+    /**
+     * The address that belong to the patient.
+     */
+    public function PacientesEndereco(): HasMany
+    {
+        return $this->hasMany(PacientesEndereco::class);
+    }
 }

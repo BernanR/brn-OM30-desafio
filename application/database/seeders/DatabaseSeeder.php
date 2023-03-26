@@ -12,6 +12,6 @@ class DatabaseSeeder extends Seeder
      */
     public function run(): void
     {
-        \App\Models\Paciente::factory(10)->create();
+        $this->call(PacienteSeeder::class);
     }
 }

@@ -28,7 +28,6 @@ class StorePacienteRequest extends FormRequest
         $paciente = $this->route('paciente');
         $id = ($paciente) ? $paciente->id : -1;
 
-
         return [
             'nome_completo' => 'required|string|max:255',
             'nome_mae_completo' => 'required|string|max:255',
