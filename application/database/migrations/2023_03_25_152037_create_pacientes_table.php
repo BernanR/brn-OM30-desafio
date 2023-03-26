@@ -16,9 +16,9 @@ return new class extends Migration
             $table->string('nome_completo');
             $table->string('nome_mae_completo');
             $table->date('data_nascimento');
-            $table->string('foto');
-            $table->integer('cpf')->unique()->unsigned();
-            $table->integer('cns')->unique()->unsigned();
+            $table->string('foto')->nullable();
+            $table->unsignedBigInteger('cpf')->unique();
+            $table->unsignedBigInteger('cns')->unique();
             $table->timestamps();
         });
     }
