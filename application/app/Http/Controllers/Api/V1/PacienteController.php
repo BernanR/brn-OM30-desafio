@@ -3,10 +3,12 @@
 namespace App\Http\Controllers\Api\V1;
 
 use App\Models\Paciente;
+use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 use App\Http\Controllers\Controller;
+use App\Http\Resources\PacienteResource;
 use App\Http\Requests\StorePacienteRequest;
 use App\Http\Requests\UpdatePacienteRequest;
-use App\Http\Resources\PacienteResource;
 
 class PacienteController extends Controller
 {
@@ -15,7 +17,18 @@ class PacienteController extends Controller
      */
     public function index()
     {
-        return PacienteResource::collection(Paciente::all());
+        $query = Paciente::query();
+
+        if (request()->has('nome') || request()->has('cpf')) {
+            $value = request(request()->keys()[0]);
+            $value = ($value) ? $value : 'no-value';
+            $paciente = $query->whereRaw("UPPER(concat(nome_completo, '#', cpf)) like '%" . strtoupper( $value ) . "%'")->get();
+        } else {
+
+            $paciente = Paciente::all();
+        }
+
+        return PacienteResource::collection($paciente);
     }
 
 
