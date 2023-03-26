@@ -17,6 +17,7 @@ use Illuminate\Support\Facades\Route;
 
 Route::prefix('v1')->group(function () {
     Route::apiResource('/pacientes', PacienteController::class);
+    Route::get('/pacientes/{cpf?}{nome?}', [PacienteController::class, 'search']);
 });
 
 Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
