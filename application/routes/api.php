@@ -22,6 +22,7 @@ Route::prefix('v1')->group(function () {
     Route::get('/pacientes/{cpf?}{nome?}', [PacienteController::class, 'search']);
     Route::get('/cep/{cep}', CepController::class);
     Route::post('/pacientes/importacao', PacientesImportarcaoController::class);
+    Route::get('/arquivo-log-erros/{file}', [PacientesImportarcaoController::class, 'logs']);
 });
 
 Route::middleware('auth:sanctum')->get('/user', function (Request $request) {

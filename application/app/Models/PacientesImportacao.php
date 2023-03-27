@@ -2,20 +2,24 @@
 
 namespace App\Models;
 
-use App\Http\Requests\StorePacienteEnderecosRequest;
 use DateTime;
+use Illuminate\Support\Str;
 use App\Models\PacientesEndereco;
+use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Facades\Validator;
 use App\Http\Requests\StorePacienteRequest;
+use App\Http\Requests\StorePacienteEnderecosRequest;
 
 class PacientesImportacao extends Paciente
 {
     protected $table = 'pacientes';
-    private $csv;
+    protected $pathLogFile;
+    private $csv = [];
 
     public function importar($path) {
         $csvFile = fopen(storage_path('app/'. $path), 'r');
         $header = fgetcsv($csvFile);
+        $this->csv[] = $header;
         $error = "";
 
         while (($row = fgetcsv($csvFile)) !== false) {
@@ -51,15 +55,46 @@ class PacientesImportacao extends Paciente
             }
 
             if ($error != "") {
-                $this->csv = $row;
-                $this->csv['erros'] = $error;
+                $data['erros'] = $error;
+                $this->csv[] = $data;
             }
+        }
 
-            dd($error);
+        // se houve erros, gerar aquivo de log
+        if ($this->fails()) {
+            $this->csv[0][] = "Erro";
+            $this->gerarArquivoDeErro();
         }
 
         // Close the file handle
         fclose($csvFile);
+
+        Storage::delete($path);
+    }
+
+    private function gerarArquivoDeErro() : void {
+
+        $fileName = Str::random(40) . '_csv_log.csv';
+        $path = 'csv_logs/' . $fileName;
+
+        $csvData = implode("\n", array_map(function ($row) {
+            return implode(',', $row);
+        }, $this->csv));
+
+        Storage::put($path, $csvData);
+
+        $this->pathLogFile = $fileName;
+    }
+
+    public function fails() : bool {
+        if (count($this->csv) > 1)
+            return true;
+
+        return false;
+    }
+
+    public function getFileLog() : String {
+        return $this->pathLogFile;
     }
 
     private function tratamentoDados(array $data) : Array
@@ -94,7 +129,7 @@ class PacientesImportacao extends Paciente
     private function getListaErrors($errors) : String {
         $list = [];
         $all_errors = $errors->all();
-        $list = implode("|", $all_errors);
+        $list = implode(" | ", $all_errors);
         return $list;
     }
 
