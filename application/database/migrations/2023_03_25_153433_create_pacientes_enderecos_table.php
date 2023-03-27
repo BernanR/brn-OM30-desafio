@@ -16,7 +16,7 @@ return new class extends Migration
             $table->unsignedBigInteger('paciente_id');
             $table->string('endereco');
             $table->string('numero');
-            $table->string('complemento');
+            $table->string('complemento')->nullable();
             $table->string('bairro');
             $table->integer('cep');
             $table->string('cidade');
