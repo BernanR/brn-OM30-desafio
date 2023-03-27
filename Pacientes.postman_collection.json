@@ -1,0 +1,143 @@
+{
+	"info": {
+		"_postman_id": "8b82e5bb-5e67-4956-8f77-758ec9bf57d4",
+		"name": "Pacientes",
+		"schema": "https://schema.getpostman.com/json/collection/v2.0.0/collection.json",
+		"_exporter_id": "8990285"
+	},
+	"item": [
+		{
+			"name": "Listar pacientes",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": "http://127.0.0.1:8080/api/v1/pacientes"
+			},
+			"response": []
+		},
+		{
+			"name": "Consultar cep",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": "http://127.0.0.1:8080/api/v1/cep/18277-610"
+			},
+			"response": []
+		},
+		{
+			"name": "Listar um paciente",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": "http://127.0.0.1:8080/api/v1/pacientes/1"
+			},
+			"response": []
+		},
+		{
+			"name": "Buscar um paciente",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": "http://127.0.0.1:8080/api/v1/pacientes/1"
+			},
+			"response": []
+		},
+		{
+			"name": "Gravar um Paciente",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Accept",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"nome_completo\": \"João Silva\",\r\n    \"nome_mae_completo\": \"Joana da Silva\"\r\n    \"data_nascimento\" : \"2000-02-15\",\r\n    \"foto\" : \"https://via.placeholder.com/640x480.png/0088ff?text=perfil+voluptatem\",\r\n    \"cpf\" : \"37513556857\",\r\n    \"cns\" : \"37513556857\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": "http://127.0.0.1:8080/api/v1/pacientes"
+			},
+			"response": []
+		},
+		{
+			"name": "Importar CSV pacientes",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Accept",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "formdata",
+					"formdata": [
+						{
+							"key": "file",
+							"type": "file",
+							"src": "/C:/Users/alves/OneDrive/Documentos/import.csv"
+						}
+					]
+				},
+				"url": "http://127.0.0.1:8080/api/v1/pacientes/importacao"
+			},
+			"response": []
+		},
+		{
+			"name": "Atualizar um Paciente",
+			"request": {
+				"method": "PUT",
+				"header": [
+					{
+						"key": "Accept",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"nome_completo\": \"João Silva Dois\",\r\n    \"nome_mae_completo\": \"Joana da Silva\",\r\n    \"data_nascimento\" : \"2000-02-15\",\r\n    \"foto\" : \"https://via.placeholder.com/640x480.png/0088ff?text=perfil+voluptatem\",\r\n    \"cpf\" : \"37513556857\",\r\n    \"cns\" : \"12345678912345676\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": "http://127.0.0.1:8080/api/v1/pacientes/1"
+			},
+			"response": []
+		},
+		{
+			"name": "Excluir um paciente",
+			"request": {
+				"method": "DELETE",
+				"header": [
+					{
+						"key": "Accept",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"nome_completo\": \"João Silva Dois\",\r\n    \"nome_mae_completo\": \"Joana da Silva\",\r\n    \"data_nascimento\" : \"2000-02-15\",\r\n    \"foto\" : \"https://via.placeholder.com/640x480.png/0088ff?text=perfil+voluptatem\",\r\n    \"cpf\" : \"37513556857\",\r\n    \"cns\" : \"12345678912345676\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": "http://127.0.0.1:8080/api/v1/pacientes/10"
+			},
+			"response": []
+		}
+	]
+}
