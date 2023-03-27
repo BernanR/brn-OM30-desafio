@@ -11,15 +11,15 @@
 ## Criar servidor para o postgresql
 
 1. Acessar painel pgAdmin4 ```http://localhost:5050/```
-    Usuario e senha:
-    User: admin@admin.com
-    Senha: password
+  - Usuario e senha:
+  - User: admin@admin.com
+  - Senha: password
 
 2. ```Registrar o serve:```
-    Host: db
-    Port: 5432
-    Username: root
-    Password: password
+  - Host: db
+  - Port: 5432
+  - Username: root
+  - Password: password
 
 ## Rodar migrates e seeds
 
