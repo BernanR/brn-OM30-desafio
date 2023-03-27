@@ -43,3 +43,6 @@
  - Criado endpoint para consulta de CEP e com cache (Redis) dos dados para futuras consultas.
  - Criado Criar um endpoint que faça importação de dados (pacientes) via arquivo .csv (não finalizei o processo assicrono))
  - Utilizado docker e docker-compose para execução do projeto 
+
+## Link Collection  API's
+https://www.postman.com/red-star-7529/workspace/brn-0m30-desafio/collection/8990285-8b82e5bb-5e67-4956-8f77-758ec9bf57d4?action=share&creator=8990285
