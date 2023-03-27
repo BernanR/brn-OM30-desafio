@@ -26,9 +26,6 @@
 1. ```docker-compose exec application.dev php artisan migrate```
 2. ```docker-compose exec application.dev php artisan db:seed```
 
-## Link da Aplicação no postaman
-```https://www.postman.com/red-star-7529/workspace/brn-0m30-desafio/overview```
-
 ## O que foi feito neste projeto.
 
  - desenvolvimento das API's nos padrões RESTful.
