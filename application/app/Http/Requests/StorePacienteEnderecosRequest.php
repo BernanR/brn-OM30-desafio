@@ -11,7 +11,7 @@ class StorePacienteEnderecosRequest extends FormRequest
      */
     public function authorize(): bool
     {
-        return false;
+        return true;
     }
 
     /**
@@ -22,7 +22,14 @@ class StorePacienteEnderecosRequest extends FormRequest
     public function rules(): array
     {
         return [
-            //
+            'paciente_id' => 'required|integer',
+            'endereco' => 'required|string|max:255',
+            'complemento' => 'string|max:255',
+            'numero' => 'required|string|max:255',
+            'bairro' => 'required|string|max:255',
+            'cep' => 'required|string|max:255',
+            'cidade' => 'required|string|max:255',
+            'estado' => 'required|string|max:255',
         ];
     }
 }
