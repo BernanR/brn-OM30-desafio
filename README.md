@@ -12,8 +12,8 @@
 
 1. Acessar painel pgAdmin4 ```http://localhost:5050/```
   - Usuario e senha:
-  - User: admin@admin.com
-  - Senha: password
+    - User: admin@admin.com
+    - Senha: password
 
 2. ```Registrar o serve:```
   - Host: db
